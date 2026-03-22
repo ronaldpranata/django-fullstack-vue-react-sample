@@ -4,7 +4,7 @@ This project is a highly modular, enterprise-grade prototype featuring a **Djang
 
 ## Architecture Topography
 - **Backend (`/`)**: Django core logic layer, Django Channels (WebSockets), and structural ORM constraints. Secures connections via JWT. Runs on `http://127.0.0.1:8000`.
-- **Frontend A (`/frontend/`)**: Vue 3 + Vite Interface. Runs on `http://localhost:5173`.
+- **Frontend A (`/frontend-vue/`)**: Vue 3 + Vite Interface. Runs on `http://localhost:5173`.
 - **Frontend B (`/frontend-react/`)**: React 18 + Vite Interface. Runs on `http://localhost:5174`.
 
 ## System Prerequisites
@@ -44,7 +44,7 @@ python manage.py runserver
 
 Open a **second terminal instance** and navigate to the Vue infrastructure:
 ```bash
-cd ~/Projects/python-django/frontend
+cd ~/Projects/python-django/frontend-vue
 
 # 1. Resolve Node Modules (if initial boot)
 npm install

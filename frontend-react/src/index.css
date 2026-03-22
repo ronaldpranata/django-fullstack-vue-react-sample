@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-gray-200 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+/* Custom Scrollbar for Chat */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-surface rounded-lg;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-lg;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}

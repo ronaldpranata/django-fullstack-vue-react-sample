@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Modular Architectures - Employee Directory</title>
+    <style>
+        :root {
+            --primary-bg: #121212;
+            --surface-bg: #1e1e1e;
+            --primary-color: #bb86fc;
+            --text-color: #e0e0e0;
+            --font-family: 'Inter', system-ui, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: var(--surface-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Corporate Directory</h1>
+        
+        <!-- Vanilla Web Component -->
+        <employee-list></employee-list>
+    </div>
+
+    <!-- Frontend Service Layer -->
+    <script type="module" src="/static/js/api.js"></script>
+    
+    <!-- Custom Web Components -->
+    <script type="module" src="/static/js/components/employee-list.js"></script>
+
+</body>
+</html>

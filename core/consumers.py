@@ -1,39 +1,11 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
-from django.contrib.auth import get_user_model
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from urllib.parse import parse_qs
-from .models import ChatMessage
 
-User = get_user_model()
-
-@database_sync_to_async
-def get_user_from_token(token_string):
-    try:
-        access_token = AccessToken(token_string)
-        user = User.objects.get(id=access_token['user_id'])
-        return user
-    except (InvalidToken, TokenError, User.DoesNotExist):
-        return None
-
-@database_sync_to_async
-def save_message(user, content):
-    return ChatMessage.objects.create(author=user, content=content)
-
-@database_sync_to_async
-def get_message_history():
-    messages = ChatMessage.objects.order_by('-created_at')[:50]
-    return [
-        {
-            "type": "message",
-            "author": msg.author.username,
-            "message": msg.content,
-            "timestamp": msg.created_at.strftime("%H:%M")
-        }
-        for msg in reversed(messages)
-    ]
+# Structural Service Architecture Decoupling:
+from .selectors import get_user_from_token, get_message_history
+from .services import save_chat_message
 
 class NotificationConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -47,7 +19,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             await self.close()
             return
 
-        self.user = await get_user_from_token(token)
+        self.user = await database_sync_to_async(get_user_from_token)(token)
         if not self.user:
             await self.close()
             return
@@ -58,7 +30,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         )
         await self.accept()
 
-        history = await get_message_history()
+        history = await database_sync_to_async(get_message_history)()
         await self.send(text_data=json.dumps({
             "type": "history",
             "messages": history
@@ -75,7 +47,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         message_content = text_data_json.get("message", "")
 
         if message_content and self.user:
-            msg = await save_message(self.user, message_content)
+            msg = await database_sync_to_async(save_chat_message)(user=self.user, content=message_content)
             
             await self.channel_layer.group_send(
                 self.room_group_name,

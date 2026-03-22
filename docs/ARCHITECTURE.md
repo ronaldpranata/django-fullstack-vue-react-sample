@@ -22,6 +22,14 @@ python-django/
 └── docs/                    # Architecture documentation
 ```
 
+### Pluggable Apps (Separation of Concerns)
+This project strictly enforces **Separation of Concerns** via Django's "Pluggable Apps" pattern:
+
+- **`core/` (System & Foundations)**: Strictly reserved for underlying system mechanics required globally across the ecosystem (e.g., Authentication, `CustomUser` models, Django Channels WebSockets, Global Chat architectures). It holds zero specialized product business logic.
+- **`company/` (Domain Business Logic)**: Strictly reserved for specialized product/domain logic (e.g., Employee HR structures, Department frameworks, Staff endpoints).
+
+**Why?** If the codebase scales to require separate `billing/` or `support/` modules, those folders are scaffolded in total isolation. The `core` folder remains untouched but dynamically supplies Base System configurations (like Authentication or WebSocket wrappers) to the new scaling modules natively. This enforces extreme code-hygiene and prevents monolithic tangling.
+
 ## 2. Design Patterns
 
 ### The Service Layer Pattern

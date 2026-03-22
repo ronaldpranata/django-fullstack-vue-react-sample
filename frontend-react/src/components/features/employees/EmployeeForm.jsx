@@ -7,6 +7,13 @@ export const EmployeeForm = ({ isEditing, formData, setFormData, onSubmit, onClo
         <h2 className="text-2xl font-bold text-primary mb-6">{isEditing ? 'Modify' : 'Enroll'} Employee</h2>
         <form onSubmit={onSubmit} className="space-y-5">
           <div>
+            <label className="block text-gray-400 text-sm font-medium mb-1.5">Employee ID</label>
+            <input 
+              required className="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+              value={formData.employee_id} onChange={e => setFormData({...formData, employee_id: e.target.value})} 
+            />
+          </div>
+          <div>
             <label className="block text-gray-400 text-sm font-medium mb-1.5">First Name</label>
             <input 
               required className="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"

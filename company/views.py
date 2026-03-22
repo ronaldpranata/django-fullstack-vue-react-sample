@@ -14,6 +14,7 @@ def employee_list_api(request):
         data = [
             {
                 "id": emp.id,
+                "employee_id": emp.employee_id,
                 "name": f"{emp.first_name} {emp.last_name}",
                 "first_name": emp.first_name,
                 "last_name": emp.last_name,
@@ -33,6 +34,7 @@ def employee_list_api(request):
                 dept_id = dept.id
 
             emp = create_employee(
+                employee_id=body.get('employee_id', ''),
                 first_name=body.get('first_name', ''),
                 last_name=body.get('last_name', ''),
                 email=body.get('email', ''),
@@ -57,6 +59,7 @@ def employee_detail_api(request, employee_id):
             body = request.data
             emp = update_employee(
                 employee,
+                employee_id=body.get('employee_id', employee.employee_id),
                 first_name=body.get('first_name', employee.first_name),
                 last_name=body.get('last_name', employee.last_name),
                 email=body.get('email', employee.email),

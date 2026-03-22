@@ -13,7 +13,7 @@ const loading = ref(true);
 
 const showForm = ref(false);
 const isEditing = ref(false);
-const formData = ref({ id: null, first_name: '', last_name: '', email: '', department_id: 1 });
+const formData = ref({ id: null, employee_id: '', first_name: '', last_name: '', email: '', department_id: 1 });
 
 const loadData = async () => {
   loading.value = true;
@@ -51,14 +51,14 @@ const handleDelete = async (id) => {
 
 const openNewForm = () => {
   isEditing.value = false;
-  formData.value = { id: null, first_name: '', last_name: '', email: '', department_id: 1 };
+  formData.value = { id: null, employee_id: '', first_name: '', last_name: '', email: '', department_id: 1 };
   showForm.value = true;
 };
 
 const openEditForm = (emp) => {
   isEditing.value = true;
   formData.value = { 
-    id: emp.id, first_name: emp.first_name, 
+    id: emp.id, employee_id: emp.employee_id, first_name: emp.first_name, 
     last_name: emp.last_name, email: emp.email, 
     department_id: emp.department_id || 1 
   };

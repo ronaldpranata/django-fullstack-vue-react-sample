@@ -32,11 +32,11 @@ class Command(BaseCommand):
 
         # Employees
         employees = [
-            {"first_name": "Alan", "last_name": "Turing", "email": "turing@enigma.com", "department": d1, "hire_date": date(2023, 1, 15)},
-            {"first_name": "Ada", "last_name": "Lovelace", "email": "ada@analytics.com", "department": d1, "hire_date": date(2023, 2, 20)},
-            {"first_name": "Grace", "last_name": "Hopper", "email": "hopper@navy.mil", "department": d2, "hire_date": date(2022, 11, 5)},
-            {"first_name": "Steve", "last_name": "Wozniak", "email": "woz@apple.com", "department": d3, "hire_date": date(2024, 3, 10)},
-            {"first_name": "Tim", "last_name": "Berners-Lee", "email": "tim@www.org", "department": d1, "hire_date": date(2023, 5, 22)},
+            {"employee_id": "EMP-001", "first_name": "Alan", "last_name": "Turing", "email": "turing@enigma.com", "department": d1, "hire_date": date(2023, 1, 15)},
+            {"employee_id": "EMP-002", "first_name": "Ada", "last_name": "Lovelace", "email": "ada@analytics.com", "department": d1, "hire_date": date(2023, 2, 20)},
+            {"employee_id": "HR-001", "first_name": "Grace", "last_name": "Hopper", "email": "hopper@navy.mil", "department": d2, "hire_date": date(2022, 11, 5)},
+            {"employee_id": "MAR-001", "first_name": "Steve", "last_name": "Wozniak", "email": "woz@apple.com", "department": d3, "hire_date": date(2024, 3, 10)},
+            {"employee_id": "EMP-003", "first_name": "Tim", "last_name": "Berners-Lee", "email": "tim@www.org", "department": d1, "hire_date": date(2023, 5, 22)},
         ]
 
         for emp_data in employees:

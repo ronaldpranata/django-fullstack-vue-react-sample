@@ -13,6 +13,7 @@ class Department(models.Model):
         return self.name
 
 class Employee(models.Model):
+    employee_id = models.CharField(max_length=20, unique=True, db_index=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)

@@ -11,7 +11,7 @@ export const DashboardPage = ({ onLogout }) => {
   
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({id: null, first_name: '', last_name: '', email: '', department_id: 1});
+  const [formData, setFormData] = useState({id: null, employee_id: '', first_name: '', last_name: '', email: '', department_id: 1});
 
   const loadData = async () => {
     setLoading(true);
@@ -44,13 +44,13 @@ export const DashboardPage = ({ onLogout }) => {
 
   const openNewForm = () => {
     setIsEditing(false);
-    setFormData({id: null, first_name: '', last_name: '', email: '', department_id: 1});
+    setFormData({id: null, employee_id: '', first_name: '', last_name: '', email: '', department_id: 1});
     setShowForm(true);
   };
 
   const openEditForm = (emp) => {
     setIsEditing(true);
-    setFormData({id: emp.id, first_name: emp.first_name, last_name: emp.last_name, email: emp.email, department_id: emp.department_id || 1});
+    setFormData({id: emp.id, employee_id: emp.employee_id, first_name: emp.first_name, last_name: emp.last_name, email: emp.email, department_id: emp.department_id || 1});
     setShowForm(true);
   };
 

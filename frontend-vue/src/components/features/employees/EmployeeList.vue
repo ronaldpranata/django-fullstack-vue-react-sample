@@ -16,6 +16,7 @@ const emit = defineEmits(['edit', 'delete']);
   <div v-else class="space-y-4">
     <div v-for="emp in employees" :key="emp.id" class="bg-surface border border-gray-800/50 p-6 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center shadow-lg hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(66,184,131,0.1)] transition-all duration-300">
       <div class="mb-4 sm:mb-0">
+        <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">{{ emp.employee_id }}</div>
         <h2 class="text-xl font-bold text-gray-100 mb-1 tracking-tight">{{ emp.name }}</h2>
         <p class="text-gray-400 text-sm flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-green-500 block"></span>

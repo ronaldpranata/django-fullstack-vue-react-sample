@@ -15,6 +15,13 @@ const emit = defineEmits(['submit', 'close', 'update:formData']);
       <h2 class="text-2xl font-bold text-primary mb-6">{{ isEditing ? 'Modify' : 'Enroll' }} Employee</h2>
       <form @submit.prevent="emit('submit')" class="space-y-5">
         <div>
+          <label class="block text-gray-400 text-sm font-medium mb-1.5">Employee ID</label>
+          <input 
+            required class="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+            v-model="formData.employee_id" 
+          />
+        </div>
+        <div>
           <label class="block text-gray-400 text-sm font-medium mb-1.5">First Name</label>
           <input 
             required class="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"

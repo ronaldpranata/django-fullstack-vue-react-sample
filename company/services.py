@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from .models import Employee, Department
 
-def create_employee(*, first_name: str, last_name: str, email: str, department_id: int, hire_date=None) -> Employee:
+def create_employee(*, employee_id: str, first_name: str, last_name: str, email: str, department_id: int, hire_date=None) -> Employee:
     """Create a new employee with business logic validation."""
     if Employee.objects.filter(email=email).exists():
         raise ValidationError(f"Employee with email {email} already exists.")
@@ -12,6 +12,7 @@ def create_employee(*, first_name: str, last_name: str, email: str, department_i
         
     department = Department.objects.get(id=department_id)
     employee = Employee(
+        employee_id=employee_id,
         first_name=first_name,
         last_name=last_name,
         email=email,
@@ -24,10 +25,11 @@ def create_employee(*, first_name: str, last_name: str, email: str, department_i
 
 def deactivate_employee(employee: Employee) -> Employee:
     """Deactivate an employee."""
-def update_employee(employee: Employee, *, first_name: str, last_name: str, email: str, department_id: int) -> Employee:
+def update_employee(employee: Employee, *, employee_id: str, first_name: str, last_name: str, email: str, department_id: int) -> Employee:
     if Employee.objects.filter(email=email).exclude(id=employee.id).exists():
         raise ValidationError(f"Another employee with email {email} already exists.")
         
+    employee.employee_id = employee_id
     employee.first_name = first_name
     employee.last_name = last_name
     employee.email = email
